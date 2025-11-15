@@ -127,13 +127,32 @@ imagezero/
 ```
 
 ### Building for Production
+
+**Important**: Before building for production, you must build the WebAssembly module:
+
 ```bash
+# Install wasm-pack if not already installed
+cargo install wasm-pack
+
+# Build the WebAssembly module
+npm run build:wasm
+
 # Build the application
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm start
 ```
+
+### Deployment
+
+For deployment platforms like Vercel, Netlify, or others that don't support Rust/WebAssembly builds:
+
+1. Build the WebAssembly module locally first
+2. Commit the `wasm/pkg/` directory to your repository
+3. Deploy as normal
+
+The `wasm/pkg/` directory contains the compiled WebAssembly files needed for the application to function.
 
 ### WebAssembly Development
 The WebAssembly module is written in Rust and provides the core image processing functionality.
